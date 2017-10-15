@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
@@ -19,35 +20,53 @@
 </c:if>
 
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-<spring:bind path="business">
-	<div class="form-group">
-		<label class="control-label">Filial</label>
-		<div class="input-group">
-			<form:select path="business" class="selectpicker form-control">
-				<form:option value="0" label="Selecione" />
-				<form:options items="${businessList}" itemValue="id" itemLabel="name" autofocus="true"/>
-			</form:select>
-			<span class="input-group-btn">
-				<a href="${contextPath}/business/" class="btn btn-success">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				</a>
-			</span>
-			<form:errors path="business"></form:errors>
+<ul class="list-group">
+	<li class="list-group-item">
+		<div class="row">
+			<div class="col-xs-4">
+				<p>Conta a pagar</p>
+			</div>
+			<div class="col-xs-8 text-right">
+				<p>${billPay.id}</p>
+			</div>
 		</div>
-	</div>
-</spring:bind>
-<spring:bind path="name">
+	</li>
+	<li class="list-group-item">
+		<div class="row">
+			<div class="col-xs-4">
+				<p>Nome:</p>
+			</div>
+			<div class="col-xs-8 text-right">
+				<p>${billPay.name}</p>
+			</div>
+		</div>
+	</li>
+	<li class="list-group-item">
+		<div class="row">
+			<div class="col-xs-4">
+				<p>Data de lançamento:</p>
+			</div>
+			<div class="col-xs-8 text-right">
+				<p><fmt:formatDate value="${billPay.dateLaunch}" pattern="dd/MM/yyyy" /></p>
+			</div>
+		</div>
+	</li>
+	<li class="list-group-item">
+		<div class="row">
+			<div class="col-xs-4">
+				<p>Valor:</p>
+			</div>
+			<div class="col-xs-8 text-right">
+				<p><fmt:formatNumber value="${billPay.value}" type="currency"/></p>
+			</div>
+		</div>
+	</li>
+</ul>
+<spring:bind path="datePayment">
 	<div class="form-group">
-		<label class="control-label">Nome</label>
-		<form:input path="name" class="form-control" placeholder="Nome"></form:input>
-		<form:errors path="name"></form:errors>
-	</div>
-</spring:bind>
-<spring:bind path="dateLaunch">
-	<div class="form-group">
-		<label class="control-label">Data de lançamento</label>
-		<form:input type="date" path="dateLaunch" class="form-control"></form:input>
-		<form:errors path="dateLaunch"></form:errors>
+		<label class="control-label">Data de pagamento</label>
+		<form:input type="date" path="datePayment" class="form-control"></form:input>
+		<form:errors path="datePayment"></form:errors>
 	</div>
 </spring:bind>
 <spring:bind path="value">
@@ -58,10 +77,10 @@
 	</div>
 </spring:bind>
 <div class="text-right">
-	<a href="${contextPath}/" class="btn btn-default">
+	<a href="${contextPath}/bill-pay" class="btn btn-default">
 		<span class="glyphicon glyphicon-home"></span>
 	</a>
-	<a href="${contextPath}/bill-pay" class="btn btn-default">
+	<a href="${contextPath}/bill-pay/${billPay.id}/deduct-bills" class="btn btn-default">
 		<span class="glyphicon glyphicon-th-list"></span>
 	</a>
 	<button type="submit" class="btn btn-success">

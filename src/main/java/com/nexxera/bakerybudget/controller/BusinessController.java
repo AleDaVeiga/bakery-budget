@@ -48,7 +48,7 @@ public class BusinessController {
 	@Transactional
 	public String update(@PathVariable Long id, @ModelAttribute("businessForm") Business businessForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 		businessService.update(businessForm);
-		redirectAttributes.addFlashAttribute("messageSuccess", "Filial atualizado com sucesso.");
+		redirectAttributes.addFlashAttribute("messageSuccess", "Filial atualizada com sucesso.");
 		return "redirect:/business/" + id;
 	}
 

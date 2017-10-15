@@ -51,8 +51,13 @@
 		                                        <td>${bill.business.name}</td>
 		                                        <td>${bill.name}</td>
 		                                        <td><fmt:formatDate value="${bill.dateLaunch}" pattern="dd/MM/yyyy" /></td>
-		                                        <td><fmt:formatNumber value="${bill.value}" type="currency"/></td>
+		                                        <td class="text-danger">
+		                                        	<fmt:formatNumber value="${bill.value}" type="currency"/>
+		                                        </td>
 		                                        <td class="text-right">
+		                                        	<a href="${contextPath}/bill-pay/${bill.id}/deduct-bills" class="btn btn-success btn-sm">
+		                                        		<span class="glyphicon glyphicon-download-alt"></span>
+		                                        	</a>
 		                                        	<a href="${contextPath}/bill-pay/${bill.id}" class="btn btn-warning btn-sm">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>
 		                                        	</a>
