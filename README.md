@@ -1,4 +1,4 @@
-# Controle de contas a pagar da padaria com Spring Boot e Bootstrap
+# Controle de contas a pagar das filiais padaria com Spring Boot e Bootstrap
 
 ## Necessário
 
@@ -14,9 +14,9 @@ gradle build
 
 ## Iniciar
 
-Após compilar seu projeto você pode rodá-lo como uma programa Java, pois o container Web já está embutido:
+Após compilar seu projeto você pode rodá-lo facilmente executando o comando:
 
 ```
-java -jar build/libs/mymodule-0.0.1-SNAPSHOT.jar
+gradle bootRun
 ```
-
+Acesse [localhost:8080](http://localhost:8080/) para ver o resultado.
