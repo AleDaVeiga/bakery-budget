@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="${contextPath}/business">Filiais</a></li>
-                <li><a href="${contextPath}/bill-pays/">Contas a pagar</a></li>
+                <li><a href="${contextPath}/bill-pay">Contas a pagar</a></li>
             </ul>
         </div>
     </div>
