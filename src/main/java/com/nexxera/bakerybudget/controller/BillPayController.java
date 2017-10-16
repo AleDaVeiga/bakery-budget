@@ -34,7 +34,7 @@ public class BillPayController {
 	@PostMapping(path = "/bill-pay/")
 	@Transactional
 	public String create(@ModelAttribute("billPayForm") BillPay billPayForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-		BillPay createReturn = billPayService.create(billPayForm);
+		BillPay createReturn = billPayService.createBill(billPayForm);
 		redirectAttributes.addFlashAttribute("messageSuccess", "Conta a pagar inserida com sucesso.");
 		return "redirect:/bill-pay/" + createReturn.getId();
 	}

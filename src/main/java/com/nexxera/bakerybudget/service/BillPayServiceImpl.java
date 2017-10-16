@@ -9,15 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.nexxera.bakerybudget.model.BillPay;
 import com.nexxera.bakerybudget.repository.BillPayRepository;
+import com.nexxera.bakerybudget.service.billtasks.CreatePayment;
 
 @Service
 public class BillPayServiceImpl extends BaseServiceImpl<BillPay, Long> implements BillPayService {
 	@Autowired
 	private BillPayRepository billPayRepository;
+	
+	@Autowired
+	private BusinessService businessService;
 
 	@Override
 	protected JpaRepository<BillPay, Long> getRepository() {
 		return billPayRepository;
+	}
+	
+	@Transactional
+	public BillPay createBill(BillPay billPay) {
+		new CreatePayment(businessService).create(billPay);
+		return super.create(billPay);
 	}
 
 	@Transactional

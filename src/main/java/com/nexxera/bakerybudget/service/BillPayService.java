@@ -3,7 +3,7 @@ package com.nexxera.bakerybudget.service;
 import com.nexxera.bakerybudget.model.BillPay;
 
 public interface BillPayService {
-	BillPay create(BillPay billPay);
+	BillPay createBill(BillPay billPay);
 
 	BillPay update(BillPay billPay);
 
