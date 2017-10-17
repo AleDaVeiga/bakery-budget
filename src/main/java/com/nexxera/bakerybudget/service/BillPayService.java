@@ -5,7 +5,7 @@ import com.nexxera.bakerybudget.model.BillPay;
 public interface BillPayService {
 	BillPay createBill(BillPay billPay);
 
-	BillPay update(BillPay billPay);
+	BillPay updateBill(BillPay billPay);
 
 	void remove(BillPay billPay);
 

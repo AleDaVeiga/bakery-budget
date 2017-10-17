@@ -52,7 +52,7 @@ public class BillPayController {
 	@PutMapping(path = "/bill-pay/{id}")
 	@Transactional
 	public String update(@PathVariable Long id, @ModelAttribute("billPayForm") BillPay billPayForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-		billPayService.update(billPayForm);
+		billPayService.updateBill(billPayForm);
 		redirectAttributes.addFlashAttribute("messageSuccess", "Conta a pagar atualizada com sucesso.");
 		return "redirect:/bill-pay/" + id;
 	}

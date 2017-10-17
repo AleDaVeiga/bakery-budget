@@ -26,8 +26,16 @@ public class BillPayServiceImpl extends BaseServiceImpl<BillPay, Long> implement
 	
 	@Transactional
 	public BillPay createBill(BillPay billPay) {
-		new CreatePayment(businessService).create(billPay);
+		new CreatePayment(businessService, this).create(billPay);
+		businessService.update(billPay.getBusiness());
 		return super.create(billPay);
+	}
+	
+	@Transactional
+	public BillPay updateBill(BillPay billPay) {
+		new CreatePayment(businessService, this).create(billPay);
+		businessService.update(billPay.getBusiness());
+		return super.update(billPay);
 	}
 
 	@Transactional
