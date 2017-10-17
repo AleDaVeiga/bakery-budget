@@ -7,15 +7,36 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.nexxera.bakerybudget.model.DeductBill;
 import com.nexxera.bakerybudget.repository.DeductBillRepository;
+import com.nexxera.bakerybudget.service.billtasks.ChangeDeductBill;
 
 @Service
 public class DeductBillServiceImpl extends BaseServiceImpl<DeductBill, Long> implements DeductBillService {
 	@Autowired
 	private DeductBillRepository deductBillRepository;
+	
+	@Autowired
+	private BusinessService businessService;
+	
+	@Autowired
+	private BillPayService billPayService;
 
 	@Override
 	protected JpaRepository<DeductBill, Long> getRepository() {
 		return deductBillRepository;
+	}
+	
+	@Transactional
+	public DeductBill createDeduct(Long billPayId, DeductBill deductBill) {
+		new ChangeDeductBill(billPayService, this).create(billPayId, deductBill);
+		businessService.update(deductBill.getBillPay().getBusiness());
+		return super.create(deductBill);
+	}
+	
+	@Transactional
+	public DeductBill updateDeduct(Long billPayId, DeductBill deductBill) {
+		new ChangeDeductBill(billPayService, this).create(billPayId, deductBill);
+		businessService.update(deductBill.getBillPay().getBusiness());
+		return super.update(deductBill);
 	}
 
 	@Transactional(readOnly=true)

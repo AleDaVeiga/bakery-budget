@@ -30,6 +30,22 @@ public class CreatePayment {
 		return billPay;
 	}
 
+	private BigDecimal getBillPayValue(BillPay billPay) {
+		Optional<BillPay> bill = Optional.ofNullable(billPay);
+		if(bill.isPresent()) {
+			return bill.get().getValue();
+		}
+		return BigDecimal.ZERO;
+	}
+
+	private BillPay getBillPay(BillPay billPay) {
+		Optional<Long> billId = Optional.ofNullable(billPay.getId());
+		if (billId.isPresent()) {
+			return billPayService.findOne(billId.get());
+		}
+		return null;
+	}
+
 	private Business getBusiness(BillPay billPay) {
 		return businessService.findOne(billPay.getBusiness().getId());
 	}
@@ -38,18 +54,6 @@ public class CreatePayment {
 		Optional<BigDecimal> balance = Optional.ofNullable(business.getBalance());
 		if(balance.isPresent()) {
 			return balance.get();
-		}
-		return BigDecimal.ZERO;
-	}
-
-	private BillPay getBillPay(BillPay billPay) {
-		return billPayService.findOne(billPay.getId());
-	}
-
-	private BigDecimal getBillPayValue(BillPay billPay) {
-		Optional<BillPay> bill = Optional.ofNullable(billPay);
-		if(bill.isPresent()) {
-			return bill.get().getValue();
 		}
 		return BigDecimal.ZERO;
 	}

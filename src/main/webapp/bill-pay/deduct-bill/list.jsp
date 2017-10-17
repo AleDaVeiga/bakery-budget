@@ -72,6 +72,16 @@
 	                				</div>
 	                			</div>
 	                		</li>
+	                		<li class="list-group-item">
+	                			<div class="row">
+	                				<div class="col-xs-4">
+	                					<p>Saldo:</p>
+	                				</div>
+	                				<div class="col-xs-8 text-right text-danger">
+	                					<p><fmt:formatNumber value="${billPay.business.balance}" type="currency"/></p>
+	                				</div>
+	                			</div>
+	                		</li>
 	                	</ul>
 	                    <div class="row">
 	                        <div class="col-md-12">

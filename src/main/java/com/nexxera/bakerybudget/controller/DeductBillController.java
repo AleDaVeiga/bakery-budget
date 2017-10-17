@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.nexxera.bakerybudget.model.BillPay;
 import com.nexxera.bakerybudget.model.DeductBill;
 import com.nexxera.bakerybudget.service.BillPayService;
 import com.nexxera.bakerybudget.service.DeductBillService;
@@ -36,10 +35,7 @@ public class DeductBillController {
 	@PostMapping(path = "/{bill_pay_id}/deduct-bill/")
 	@Transactional
 	public String create(@PathVariable Long bill_pay_id, @ModelAttribute("deductBillForm") DeductBill deductBillForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-		BillPay billPay = billPayService.findOne(bill_pay_id);
-		model.addAttribute("billPay", billPay);
-		deductBillForm.setBillPay(billPay);
-		DeductBill createReturn = deductBillService.create(deductBillForm);
+		DeductBill createReturn = deductBillService.createDeduct(bill_pay_id, deductBillForm);
 		redirectAttributes.addFlashAttribute("messageSuccess", "Baixa inserida com sucesso.");
 		return "redirect:/bill-pay/"+ bill_pay_id +"/deduct-bill/" + createReturn.getId();
 	}
@@ -58,10 +54,7 @@ public class DeductBillController {
 	@PutMapping(path = "/{bill_pay_id}/deduct-bill/{id}")
 	@Transactional
 	public String update(@PathVariable Long bill_pay_id, @PathVariable Long id, @ModelAttribute("deductBillForm") DeductBill deductBillForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-		BillPay billPay = billPayService.findOne(bill_pay_id);
-		model.addAttribute("billPay", billPay);
-		deductBillService.update(deductBillForm);
-		deductBillForm.setBillPay(billPay);
+		deductBillService.updateDeduct(bill_pay_id, deductBillForm);
 		redirectAttributes.addFlashAttribute("messageSuccess", "Baixa atualizada com sucesso.");
 		return "redirect:/bill-pay/"+ bill_pay_id +"/deduct-bill/" + id;
 	}

@@ -3,9 +3,9 @@ package com.nexxera.bakerybudget.service;
 import com.nexxera.bakerybudget.model.DeductBill;
 
 public interface DeductBillService {
-	DeductBill create(DeductBill deductBill);
+	DeductBill createDeduct(Long billPayId, DeductBill deductBill);
 
-	DeductBill update(DeductBill deductBill);
+	DeductBill updateDeduct(Long billPayId, DeductBill deductBill);
 
 	DeductBill findOne(Long id);
 	
