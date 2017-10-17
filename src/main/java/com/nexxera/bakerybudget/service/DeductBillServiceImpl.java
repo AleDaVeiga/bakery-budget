@@ -27,14 +27,14 @@ public class DeductBillServiceImpl extends BaseServiceImpl<DeductBill, Long> imp
 	
 	@Transactional
 	public DeductBill createDeduct(Long billPayId, DeductBill deductBill) {
-		new ChangeDeductBill(billPayService, this).create(billPayId, deductBill);
+		new ChangeDeductBill(billPayService, this).change(billPayId, deductBill);
 		businessService.update(deductBill.getBillPay().getBusiness());
 		return super.create(deductBill);
 	}
 	
 	@Transactional
 	public DeductBill updateDeduct(Long billPayId, DeductBill deductBill) {
-		new ChangeDeductBill(billPayService, this).create(billPayId, deductBill);
+		new ChangeDeductBill(billPayService, this).change(billPayId, deductBill);
 		businessService.update(deductBill.getBillPay().getBusiness());
 		return super.update(deductBill);
 	}

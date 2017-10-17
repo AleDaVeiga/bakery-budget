@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.nexxera.bakerybudget.model.BillPay;
 import com.nexxera.bakerybudget.repository.BillPayRepository;
-import com.nexxera.bakerybudget.service.billtasks.CreatePayment;
+import com.nexxera.bakerybudget.service.billtasks.ChangeBillPay;
 
 @Service
 public class BillPayServiceImpl extends BaseServiceImpl<BillPay, Long> implements BillPayService {
@@ -26,14 +26,14 @@ public class BillPayServiceImpl extends BaseServiceImpl<BillPay, Long> implement
 	
 	@Transactional
 	public BillPay createBill(BillPay billPay) {
-		new CreatePayment(businessService, this).create(billPay);
+		new ChangeBillPay(businessService, this).change(billPay);
 		businessService.update(billPay.getBusiness());
 		return super.create(billPay);
 	}
 	
 	@Transactional
 	public BillPay updateBill(BillPay billPay) {
-		new CreatePayment(businessService, this).create(billPay);
+		new ChangeBillPay(businessService, this).change(billPay);
 		businessService.update(billPay.getBusiness());
 		return super.update(billPay);
 	}

@@ -18,10 +18,10 @@ public class ChangeDeductBill {
 		this.deductBillService = deductBillService;
 	}
 
-	public DeductBill create(Long billPayId, DeductBill deductBill) {
+	public DeductBill change(Long billPayId, DeductBill deductBill) {
 		BillPay billPay = getBillPay(billPayId);
 		Business business = billPay.getBusiness();
-		BigDecimal balance = getBusinessBalance(business);
+		BigDecimal balance = business.getBalance();
 		
 		BigDecimal deductBillValue = getDeductBillValue(deductBill);
 		DeductBill deductBillOld = getDeductBill(deductBill);
@@ -34,19 +34,7 @@ public class ChangeDeductBill {
 	}
 
 	private BillPay getBillPay(Long billPayId) {
-		Optional<Long> billId = Optional.ofNullable(billPayId);
-		if (billId.isPresent()) {
-			return billPayService.findOne(billId.get());
-		}
-		return null;
-	}
-
-	private BigDecimal getBusinessBalance(Business business) {
-		Optional<BigDecimal> balance = Optional.ofNullable(business.getBalance());
-		if(balance.isPresent()) {
-			return balance.get();
-		}
-		return BigDecimal.ZERO;
+		return billPayService.findOne(billPayId);
 	}
 
 	private BigDecimal getDeductBillValue(DeductBill deductBill) {

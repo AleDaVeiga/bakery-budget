@@ -8,17 +8,17 @@ import com.nexxera.bakerybudget.model.Business;
 import com.nexxera.bakerybudget.service.BillPayService;
 import com.nexxera.bakerybudget.service.BusinessService;
 
-public class CreatePayment {
+public class ChangeBillPay {
 	
 	private BusinessService businessService;
 	private BillPayService billPayService;
 	
-	public CreatePayment(BusinessService businessService, BillPayService billPayService) {
+	public ChangeBillPay(BusinessService businessService, BillPayService billPayService) {
 		this.businessService = businessService;
 		this.billPayService = billPayService;
 	}
 
-	public BillPay create(BillPay billPay) {
+	public BillPay change(BillPay billPay) {
 		BigDecimal billPayValue = getBillPayValue(billPay);
 		BillPay billPayOld = getBillPay(billPay);
 		BigDecimal billPayOldValue = getBillPayValue(billPayOld);
