@@ -39,6 +39,7 @@
 	                                    <th style="width: 10px">#</th>
 	                                    <th>Nome</th>
 	                                    <th>CNPJ</th>
+	                                    <th>Saldo</th>
 	                                    <th class="text-right">Ação</th>
 	                                </tr>
 	                                </thead>
@@ -48,6 +49,7 @@
 		                                        <td>${bus.id}</td>
 		                                        <td>${bus.name}</td>
 		                                        <td>${bus.document}</td>
+		                                        <td><fmt:formatNumber value="${bus.balance}" type="currency"/></td>
 		                                        <td class="text-right">
 		                                        	<a href="${contextPath}/business/${bus.id}" class="btn btn-warning btn-sm">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>
