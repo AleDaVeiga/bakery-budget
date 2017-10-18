@@ -7,7 +7,7 @@ public interface BillPayService {
 
 	BillPay updateBill(BillPay billPay);
 
-	void remove(BillPay billPay);
+	void removeBill(Long id);
 
 	BillPay findOne(Long id);
 	

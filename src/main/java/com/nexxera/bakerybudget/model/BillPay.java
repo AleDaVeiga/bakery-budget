@@ -2,11 +2,15 @@ package com.nexxera.bakerybudget.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,6 +25,7 @@ public class BillPay extends BaseEntity {
 	private Date dateLaunch;
 	private BigDecimal value;
 	private Business business;
+	private Set<DeductBill> deducts;
 
 	@Column(name = "name", nullable = false, length = 250)
 	public String getName() {
@@ -59,5 +64,14 @@ public class BillPay extends BaseEntity {
 
 	public void setBusiness(Business business) {
 		this.business = business;
+	}
+
+	@OneToMany(mappedBy = "billPay", targetEntity = DeductBill.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	public Set<DeductBill> getDeducts() {
+		return deducts;
+	}
+
+	public void setDeducts(Set<DeductBill> deducts) {
+		this.deducts = deducts;
 	}
 }

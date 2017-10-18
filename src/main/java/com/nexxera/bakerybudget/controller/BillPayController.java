@@ -60,8 +60,7 @@ public class BillPayController {
 	@DeleteMapping(path = "/bill-pay/{id}")
 	@Transactional
 	public String remove(@PathVariable Long id) {
-		BillPay billPay = billPayService.findOne(id);
-		billPayService.remove(billPay);
+		billPayService.removeBill(id);
 		return "redirect:/bill-pay";
 	}
 

@@ -10,11 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nexxera.bakerybudget.model.BillPay;
 import com.nexxera.bakerybudget.repository.BillPayRepository;
 import com.nexxera.bakerybudget.service.billtasks.ChangeBillPay;
+import com.nexxera.bakerybudget.service.billtasks.RemoveBillPay;
 
 @Service
 public class BillPayServiceImpl extends BaseServiceImpl<BillPay, Long> implements BillPayService {
 	@Autowired
 	private BillPayRepository billPayRepository;
+	
+	@Autowired
+	private DeductBillService deductBillService;
 	
 	@Autowired
 	private BusinessService businessService;
@@ -39,7 +43,10 @@ public class BillPayServiceImpl extends BaseServiceImpl<BillPay, Long> implement
 	}
 
 	@Transactional
-	public void remove(BillPay billPay) {
+	public void removeBill(Long id) {
+		BillPay billPay = new RemoveBillPay(businessService, this, deductBillService).remove(id);
+		businessService.update(billPay.getBusiness());
+		deductBillService.remove(billPay.getDeducts());
 		billPayRepository.delete(billPay);
 	}
 

@@ -7,6 +7,8 @@ public interface DeductBillService {
 
 	DeductBill updateDeduct(Long billPayId, DeductBill deductBill);
 
+	void remove(Iterable<DeductBill> deducts);
+
 	DeductBill findOne(Long id);
 	
 	Iterable<DeductBill> findAll(Long billPayId);

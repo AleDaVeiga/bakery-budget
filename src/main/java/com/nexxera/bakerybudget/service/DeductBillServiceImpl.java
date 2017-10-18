@@ -38,6 +38,11 @@ public class DeductBillServiceImpl extends BaseServiceImpl<DeductBill, Long> imp
 		businessService.update(deductBill.getBillPay().getBusiness());
 		return super.update(deductBill);
 	}
+	
+	@Transactional
+	public void remove(Iterable<DeductBill> deducts) {
+		deductBillRepository.delete(deducts);
+	}
 
 	@Transactional(readOnly=true)
 	public DeductBill findOne(Long id) {

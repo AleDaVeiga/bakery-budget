@@ -106,10 +106,10 @@ public class ChangeDeductBillTest {
 	}
 
 	private DeductBill newDeductBill(Long id, BigDecimal value) {
-		DeductBill billPay = new DeductBill();
-		billPay.setId(id);
-		billPay.setValue(value);
-		return billPay;
+		DeductBill deduct = new DeductBill();
+		deduct.setId(id);
+		deduct.setValue(value);
+		return deduct;
 	}
 
 	private BillPay newBillPay(Long id, BigDecimal balance) {
